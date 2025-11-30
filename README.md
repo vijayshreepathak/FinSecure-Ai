@@ -444,6 +444,36 @@ Visit `http://localhost:8000/docs` for Swagger UI documentation.
 - **Model Accuracy**: Overall accuracy, false positive/negative rates
 - **Confusion Matrix**: Visual model performance matrix
 
+## ☁️ Streamlit Cloud Deployment
+
+Deploy your dashboard to Streamlit Cloud in minutes!
+
+### Quick Deploy Steps
+
+1. **Push to GitHub** (already done ✅)
+   - Your repository is at: https://github.com/vijayshreepathak/FinSecure-Ai
+
+2. **Deploy to Streamlit Cloud**
+   - Go to [share.streamlit.io](https://share.streamlit.io)
+   - Sign in with GitHub
+   - Click "New app"
+   - Select repository: `vijayshreepathak/FinSecure-Ai`
+   - Branch: `main`
+   - Main file: `dashboard/app_advanced.py`
+   - Click "Deploy!"
+
+3. **Configure Secrets**
+   - In app settings → Secrets, add:
+   ```toml
+   API_URL = "https://your-api-url.com"
+   ```
+
+4. **Deploy FastAPI Backend** (Optional)
+   - See [STREAMLIT_DEPLOYMENT.md](STREAMLIT_DEPLOYMENT.md) for detailed instructions
+   - Options: Railway, Render, Heroku, or ngrok for testing
+
+📖 **Full deployment guide**: See [STREAMLIT_DEPLOYMENT.md](STREAMLIT_DEPLOYMENT.md)
+
 ## 🐳 Docker Deployment
 
 ### Build Training Container

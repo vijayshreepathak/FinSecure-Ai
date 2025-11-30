@@ -10,7 +10,11 @@ import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-API_URL = os.getenv("API_URL", "http://localhost:8000")
+# Get API URL from environment variable or Streamlit secrets
+try:
+    API_URL = st.secrets.get("API_URL", os.getenv("API_URL", "http://localhost:8000"))
+except:
+    API_URL = os.getenv("API_URL", "http://localhost:8000")
 
 # Advanced Page Configuration with Dark Theme
 st.set_page_config(

@@ -7,7 +7,11 @@ import numpy as np
 import streamlit as st
 import plotly.express as px
 
-API_URL = os.getenv("API_URL", "http://localhost:8000")
+# Get API URL from environment variable or Streamlit secrets
+try:
+    API_URL = st.secrets.get("API_URL", os.getenv("API_URL", "http://localhost:8000"))
+except:
+    API_URL = os.getenv("API_URL", "http://localhost:8000")
 
 st.set_page_config(page_title="FinSecure AI Fraud Monitoring", layout="wide")
 

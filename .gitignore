@@ -28,6 +28,9 @@ env/
 .env
 .env.local
 
+# Streamlit secrets (local only)
+.streamlit/secrets.toml
+
 # Database
 *.db
 *.sqlite
