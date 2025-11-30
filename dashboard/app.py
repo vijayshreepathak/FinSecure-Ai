@@ -1,19 +1,27 @@
+# Page Configuration - MUST BE FIRST
+import streamlit as st
+
+st.set_page_config(page_title="FinSecure AI Fraud Monitoring", layout="wide")
+
+# Now import other modules
 import os
 import time
 from typing import Dict, Any, List
 import requests
 import pandas as pd
 import numpy as np
-import streamlit as st
 import plotly.express as px
 
 # Get API URL from environment variable or Streamlit secrets
 try:
-    API_URL = st.secrets.get("API_URL", os.getenv("API_URL", "http://localhost:8000"))
-except:
+    # Try to get from Streamlit secrets first
+    if hasattr(st, 'secrets') and 'API_URL' in st.secrets:
+        API_URL = st.secrets['API_URL']
+    else:
+        API_URL = os.getenv("API_URL", "http://localhost:8000")
+except (AttributeError, KeyError, FileNotFoundError):
+    # Fallback to environment variable
     API_URL = os.getenv("API_URL", "http://localhost:8000")
-
-st.set_page_config(page_title="FinSecure AI Fraud Monitoring", layout="wide")
 
 st.title("FinSecure AI — Real-Time Fraud Detection Dashboard")
 

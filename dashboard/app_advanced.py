@@ -1,3 +1,18 @@
+# Advanced Page Configuration with Dark Theme - MUST BE FIRST
+import streamlit as st
+
+st.set_page_config(
+    page_title="FinSecure AI - Advanced Fraud Detection Platform",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={
+        'Get Help': 'https://github.com/vijayshreepathak/FinSecure-Ai',
+        'Report a bug': "https://github.com/vijayshreepathak/FinSecure-Ai/issues",
+        'About': "# FinSecure AI\nReal-Time Fraud Detection powered by Machine Learning"
+    }
+)
+
+# Now import other modules
 import os
 import time
 from typing import Dict, Any, List
@@ -5,28 +20,20 @@ from datetime import datetime, timedelta
 import requests
 import pandas as pd
 import numpy as np
-import streamlit as st
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
 # Get API URL from environment variable or Streamlit secrets
 try:
-    API_URL = st.secrets.get("API_URL", os.getenv("API_URL", "http://localhost:8000"))
-except:
+    # Try to get from Streamlit secrets first
+    if hasattr(st, 'secrets') and 'API_URL' in st.secrets:
+        API_URL = st.secrets['API_URL']
+    else:
+        API_URL = os.getenv("API_URL", "http://localhost:8000")
+except (AttributeError, KeyError, FileNotFoundError):
+    # Fallback to environment variable
     API_URL = os.getenv("API_URL", "http://localhost:8000")
-
-# Advanced Page Configuration with Dark Theme
-st.set_page_config(
-    page_title="FinSecure AI - Advanced Fraud Detection Platform",
-    layout="wide",
-    initial_sidebar_state="expanded",
-    menu_items={
-        'Get Help': 'https://github.com/your-repo',
-        'Report a bug': "https://github.com/your-repo/issues",
-        'About': "# FinSecure AI\nReal-Time Fraud Detection powered by Machine Learning"
-    }
-)
 
 # Custom CSS for Modern Dark Theme
 st.markdown("""
